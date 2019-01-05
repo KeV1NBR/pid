@@ -18,6 +18,8 @@ PID::PID(double Kp, double Ki, double Kd, double threshold)
 void PID::init()
 {
     this-> error = 0;
+    this-> preInput = 0;
+    this-> integral = 0;
 }
 
 double PID::pidXY(double x, double y, double offset)
@@ -36,9 +38,10 @@ double PID::pidCtrl(double input, double offset)
     double result;
 
     newError = input - this-> preInput;
+    integral = integral + newError;
 
     P = (input-thres)* this-> kp;
-    I = (newError + error)* this->ki;
+    I = integral * this->ki;
     D = (newError - error)* this-> kd;
 
     error = newError;

@@ -20,14 +20,14 @@ void PID::init()
     this-> error = 0;
 }
 
-double PID::pidXY(double x, double y, double minSpeed)
+double PID::pidXY(double x, double y, double offset)
 {
     double result;
-    result = pidCtrl(sqrt((x*x) + (y*y)), minSpeed);
+    result = pidCtrl(sqrt((x*x) + (y*y)), offset);
     return result;
 }
 
-double PID::pidCtrl(double input, double minSpeed)
+double PID::pidCtrl(double input, double offset)
 {
     double newError;
     double P;
@@ -44,7 +44,7 @@ double PID::pidCtrl(double input, double minSpeed)
     error = newError;
     preInput = input;
     
-    result = P + I + D + minSpeed;
+    result = P + I + D + offset;
     cout << result << "\n" << endl;
     return result; 
 }

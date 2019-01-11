@@ -13,6 +13,8 @@ PID::PID(double Kp, double Ki, double Kd, double threshold)
     this-> kd = kd;
     this-> thres = threshold;
     this-> error = 0;
+    this-> preInput = 0;
+    this-> integral = 0;
 }
 
 void PID::init()

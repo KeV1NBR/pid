@@ -22,11 +22,17 @@ void PID::init()
     this-> integral = 0;
 }
 
-double PID::pidXY(double x, double y, double offset)
+double* PID::pidXY(double x, double y, double offset)
 {
     double result;
+    double* out = new double[2];
+    
     result = pidCtrl(sqrt((x*x) + (y*y)), offset);
-    return result;
+
+    out[0] = result * cos(atan2(y,x));
+    out[1] = result * sin(atan2(y,x));
+    
+    return out;
 }
 
 double PID::pidCtrl(double input, double offset)

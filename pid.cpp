@@ -54,6 +54,6 @@ double PID::pidCtrl(double input, double offset)
     preInput = input;
     
     result = P + I + D + offset;
-    cout << result << "\n" << endl;
+    //cout << result << "\n" << endl;
     return result; 
 }

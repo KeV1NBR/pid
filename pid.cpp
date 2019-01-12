@@ -17,6 +17,11 @@ PID::PID(double Kp, double Ki, double Kd, double threshold)
     this-> integral = 0;
 }
 
+PID::~PID()
+{
+
+}
+
 void PID::init()
 {
     this-> error = 0;

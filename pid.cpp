@@ -36,6 +36,9 @@ double* PID::pidXY(double x, double y, double offset)
     
     result = pidCtrl(sqrt((x*x) + (y*y)), offset);
 
+    cout << x << endl << y << endl;
+    cout <<"$$$$$"<<result<<"$$$$$"<< endl;
+
     out[0] = result * cos(atan2(y,x));
     out[1] = result * sin(atan2(y,x));
     
@@ -50,17 +53,25 @@ double PID::pidCtrl(double input, double offset)
     double D;
     double result;
 
-    newError = input - this-> preInput;
+    cout <<"######"<< input <<"##########"<<endl;
+
+    newError = input;
+    //newError = input - this-> preInput;
     integral = integral + newError;
 
     P = (input-thres)* this-> kp;
     I = integral * this->ki;
     D = (newError - error)* this-> kd;
 
+
+    cout <<"**P**" << P <<endl;
+    cout <<"**I**" << I <<endl;
+    cout <<"**D**" << D <<endl;
+
     error = newError;
     preInput = input;
     
-    result = P + I + D + offset;
+    result = P + I + offset;
     //cout << result << "\n" << endl;
     return result; 
 }

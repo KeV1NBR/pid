@@ -10,7 +10,7 @@ PID::PID(double Kp, double Ki, double Kd, double threshold)
 {
     this-> kp = Kp;
     this-> ki = Ki;
-    this-> kd = kd;
+    this-> kd = Kd;
     this-> thres = threshold;
     this-> error = 0;
     this-> preInput = 0;
@@ -22,6 +22,10 @@ PID::~PID()
 
 }
 
+PID::PID(const std::string cfg)
+{
+
+}
 void PID::init()
 {
     this-> error = 0;

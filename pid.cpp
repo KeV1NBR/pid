@@ -67,15 +67,10 @@ double PID::pidCtrl(double input, double offset)
     I = integral * this->ki;
     D = (newError - error)* this-> kd;
 
-
-    cout <<"**P**" << P <<endl;
-    cout <<"**I**" << I <<endl;
-    cout <<"**D**" << D <<endl;
-
     error = newError;
     preInput = input;
     
-    result = P + I + offset;
+    result = P + I + D + offset;
     //cout << result << "\n" << endl;
     return result; 
 }
